@@ -1,6 +1,16 @@
 Changes
 -------
 
+v0.0.1 10/25/2018
+^^^^^^^^^^^^^^^^^
+- Add some python2 compatibility
+- Simplifies codes handling django 1.* & 2.* difference
+- dump_kwargs overlays on default dump_kwargs 
+- New default dump_kwargs, e.g. indent=2, ensure_ascii=False
+
+Original Repo
+-------------
+
 v3.0.1 05/21/2018
 ^^^^^^^^^^^^^^^^^
 - Fix model full_clean behavior

@@ -1,23 +1,15 @@
-jsonfield2
-==========
+easy_jsonfield
+==============
 
-.. image:: https://travis-ci.org/rpkilby/jsonfield2.svg?branch=master
-  :target: https://travis-ci.org/rpkilby/jsonfield2
-.. image:: https://codecov.io/gh/rpkilby/jsonfield2/branch/master/graph/badge.svg
-  :target: https://codecov.io/gh/rpkilby/jsonfield2
-.. image:: https://img.shields.io/pypi/v/jsonfield2.svg
-  :target: https://pypi.org/project/jsonfield2
-.. image:: https://img.shields.io/pypi/l/jsonfield2.svg
-  :target: https://pypi.org/project/jsonfield2
+A semi-private fork of `jsonfield2`_(, which is a modern fork of `django-jsonfield`_, compatible with the latest versions of Django).
 
-A modern fork of `django-jsonfield`_, compatible with the latest versions of Django.
-
-.. _django-jsonfield: https://github.com/dmkoch/django-jsonfield
+.. _jsonfield2: https://github.com/rpkilby/jsonfield2/
+.. _django-jsonfield: https://github.com/dmkoch/django-jsonfield/
 
 -----
 
-**jsonfield2** is a reusable model field that allows you to store validated JSON, automatically handling
-serialization to and from the database. To use, add ``jsonfield.JSONField`` to one of your models.
+**easy_jsonfield** is a reusable model field that allows you to store validated JSON, automatically handling
+serialization to and from the database. To use, add ``easy_jsonfield.JSONField`` to one of your models.
 
 **Note:** `django.contrib.postgres`_ now supports PostgreSQL's jsonb type, which includes extended querying
 capabilities. If you're an end user of PostgreSQL and want full-featured JSON support, then it is
@@ -44,7 +36,7 @@ Installation
 
 .. code-block:: python
 
-    pip install jsonfield2
+    pip install easy_jsonfield
 
 
 Usage
@@ -53,7 +45,7 @@ Usage
 .. code-block:: python
 
     from django.db import models
-    from jsonfield import JSONField
+    from easy_jsonfield import JSONField
 
     class MyModel(models.Model):
         json = JSONField()
@@ -77,7 +69,7 @@ sort order of OrderedDict keys the deserialisation can be adjusted on model init
 Other Fields
 ------------
 
-**jsonfield.JSONCharField**
+**easy_jsonfield.JSONCharField**
 
 Subclasses **models.CharField** instead of **models.TextField**.
 
@@ -125,4 +117,4 @@ Changes
 
 Take a look at the `changelog`_.
 
-.. _changelog: https://github.com/rpkilby/jsonfield2/blob/master/CHANGES.rst
+.. _changelog: https://github.com/claydodo/easy_jsonfield/blob/master/CHANGES.rst

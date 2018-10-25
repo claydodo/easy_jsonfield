@@ -1,3 +1,6 @@
+# -*- coding:utf-8 -*-
+
+import six
 import copy
 import json
 
@@ -10,14 +13,25 @@ from . import forms
 from .encoder import JSONEncoder
 
 
+if six.PY2:
+    JSON_STR_TYPES = (str, unicode, bytearray)
+else:
+    JSON_STR_TYPES = (str, bytes, bytearray)
+
+
 class JSONFieldMixin(models.Field):
     form_class = forms.JSONField
 
-    def __init__(self, *args, dump_kwargs=None, load_kwargs=None, **kwargs):
-        self.dump_kwargs = dump_kwargs if dump_kwargs is not None else {
+    def __init__(self, dump_kwargs=None, load_kwargs=None, *args, **kwargs):
+        self.dump_kwargs = {
             'cls': JSONEncoder,
-            'separators': (',', ':')
+            'separators': (',', ':'),
+            'indent': 2,
+            'ensure_ascii': False
         }
+        if dump_kwargs:
+            self.dump_kwargs.update(dump_kwargs)
+
         self.load_kwargs = load_kwargs if load_kwargs is not None else {}
 
         super(JSONFieldMixin, self).__init__(*args, **kwargs)
@@ -35,7 +49,7 @@ class JSONFieldMixin(models.Field):
         if self.null and value is None:
             return None
 
-        if not isinstance(value, (str, bytes, bytearray)):
+        if not isinstance(value, JSON_STR_TYPES):
             return value
 
         try:
@@ -43,16 +57,10 @@ class JSONFieldMixin(models.Field):
         except ValueError:
             raise ValidationError(_("Enter valid JSON."))
 
-    if django.VERSION < (2, 0):
-        def from_db_value(self, value, expression, connection, context=None):
-            if self.null and value is None:
-                return None
-            return json.loads(value, **self.load_kwargs)
-    else:
-        def from_db_value(self, value, expression, connection):
-            if self.null and value is None:
-                return None
-            return json.loads(value, **self.load_kwargs)
+    def from_db_value(self, value, expression, connection, **kwargs):
+        if self.null and value is None:
+            return None
+        return json.loads(value, **self.load_kwargs)
 
     def get_prep_value(self, value):
         """Convert JSON object to a string"""

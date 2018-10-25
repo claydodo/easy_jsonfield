@@ -1,28 +1,22 @@
-from setuptools import setup
+# -*- coding:utf-8 -*-
+
+import setuptools
 
 
-setup(
-    name='jsonfield2',
-    version='3.0.1',
-    packages=['jsonfield'],
-    license='MIT',
-    include_package_data=True,
-    author='Ryan P Kilby',
-    author_email='rpkilby@ncsu.edu',
-    url='https://github.com/rpkilby/jsonfield2/',
-    description='A reusable Django field that allows you to store validated JSON in your model.',
-    long_description=open("README.rst").read(),
-    install_requires=['Django >= 1.11'],
-    classifiers=[
-        'Environment :: Web Environment',
-        'Intended Audience :: Developers',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Framework :: Django',
-    ],
+setuptools.setup(
+    name="django-easy-jsonfield",
+    version="0.0.1",
+    author="claydodo and his little friends (xiao huo ban)",
+    author_email="claydodo@foxmail.com",
+    description="A fork of rpkilby's jsonfield2 (https://github.com/rpkilby/jsonfield2/), Aims to provide an easy django JSONField",
+    url="https://github.com/claydodo/easy_jsonfield",
+    packages=setuptools.find_packages(),
+    classifiers=(
+        "Programming Language :: Python :: 2.7 ",
+        "Programming Language :: Python :: 3 ",
+        "Operating System :: OS Independent",
+    ),
+    install_requires=[
+        'six',
+    ]
 )
